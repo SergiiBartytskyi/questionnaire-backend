@@ -2,7 +2,7 @@ import createHttpError from 'http-errors';
 import * as questionnaireServices from '../services/questionnaires.js';
 
 export const getQuestionnaireController = async (req, res) => {
-  const questionnaires = questionnaireServices.getQuestionnaires();
+  const questionnaires = await questionnaireServices.getQuestionnaires();
 
   res.json({
     status: 200,
@@ -12,9 +12,9 @@ export const getQuestionnaireController = async (req, res) => {
 };
 
 export const getQuestionnaireByIdController = async (req, res) => {
-  const id = req.params;
+  const { id } = req.params;
 
-  const questionnaire = questionnaireServices.getQuestionnaireById({
+  const questionnaire = await questionnaireServices.getQuestionnaireById({
     id,
   });
 
@@ -32,7 +32,7 @@ export const createQuestionnaireController = async (req, res, next) => {
     return next(createHttpError(400, 'Required field: name!'));
   }
 
-  const newQuestionnaire = questionnaireServices.createQuestionnaire({
+  const newQuestionnaire = await questionnaireServices.createQuestionnaire({
     name,
     description,
     questions,

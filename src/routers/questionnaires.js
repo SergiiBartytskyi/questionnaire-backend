@@ -7,7 +7,7 @@ const router = Router();
 router.get('/', ctrlWrapper(controllers.getQuestionnaireController));
 router.get('/:id', ctrlWrapper(controllers.getQuestionnaireByIdController));
 router.post('/', ctrlWrapper(controllers.createQuestionnaireController));
-router.put('/', ctrlWrapper(controllers.upsertQuestionnaireController));
-router.delete('/', ctrlWrapper(controllers.deleteQuestionnaireController));
+router.put('/:id', ctrlWrapper(controllers.upsertQuestionnaireController));
+router.delete('/:id', ctrlWrapper(controllers.deleteQuestionnaireController));
 
 export default router;

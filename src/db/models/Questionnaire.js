@@ -30,6 +30,6 @@ const questionnaireSchema = new Schema(
 );
 
 export const QuestionnaireCollection = model(
-  'questionnaire',
+  'questionnaires',
   questionnaireSchema,
 );
