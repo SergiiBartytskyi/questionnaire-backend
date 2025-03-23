@@ -8,6 +8,10 @@ router.get('/', ctrlWrapper(controllers.getQuestionnaireController));
 router.get('/:id', ctrlWrapper(controllers.getQuestionnaireByIdController));
 router.post('/', ctrlWrapper(controllers.createQuestionnaireController));
 router.put('/:id', ctrlWrapper(controllers.upsertQuestionnaireController));
+router.put(
+  '/:id/submit',
+  ctrlWrapper(controllers.completeQuestionnaireController),
+);
 router.delete('/:id', ctrlWrapper(controllers.deleteQuestionnaireController));
 
 export default router;

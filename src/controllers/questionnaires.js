@@ -82,6 +82,31 @@ export const upsertQuestionnaireController = async (req, res, next) => {
   });
 };
 
+export const completeQuestionnaireController = async (req, res, next) => {
+  const { id } = req.params;
+  const { answers, completionTime } = req.body;
+  // console.log('id :>> ', id);
+  // console.log('req.body :>> ', req.body);
+  // console.log('answers :>> ', answers);
+  // console.log('completionTime :>> ', completionTime);
+
+  const questionnaire = await questionnaireServices.completeQuestionnaire(
+    id,
+    answers,
+    completionTime,
+  );
+
+  // console.log('questionnaire :>> ', questionnaire);
+  if (!questionnaire) {
+    return next(createHttpError(404, 'Questionnaire not found'));
+  }
+
+  res.status(201).json({
+    status: 201,
+    message: 'Questionnaire submitted successfully',
+    data: questionnaire,
+  });
+};
 export const deleteQuestionnaireController = async (req, res, next) => {
   const { id } = req.params;
 
